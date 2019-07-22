@@ -27,34 +27,34 @@ public class FrontEnd{
 	JTextField textName = new JTextField(20);
 	
 	JLabel labelQueryFile = new JLabel("Query File", JLabel.LEADING);
-	JTextField textFile = new JTextField(20);   //sparqlÎÄ¼þÃûTextField
-	JButton buttonChooseFile = new JButton("choose a file");   //Ñ¡ÔñsparqlÎÄ¼þµÄ°´Å¥
+	JTextField textFile = new JTextField(20);   //sparqlï¿½Ä¼ï¿½ï¿½ï¿½TextField
+	JButton buttonChooseFile = new JButton("choose a file");   //Ñ¡ï¿½ï¿½sparqlï¿½Ä¼ï¿½ï¿½Ä°ï¿½Å¥
 	FileDialog fileDialog = new FileDialog(ctlFrame, "choose a Sparql file", FileDialog.LOAD);
-	JLabel labelWarning = new JLabel();     //¾¯¸æÌáÊ¾label
-	JTextArea textAreaQuery = new JTextArea(6, 40); //ÏÔÊ¾QueryµÄÎÄµµÓò
+	JLabel labelWarning = new JLabel();     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾label
+	JTextArea textAreaQuery = new JTextArea(6, 40); //ï¿½ï¿½Ê¾Queryï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½
 	
-	JButton buttonConfirm = new JButton("confirm");  //È·ÈÏ°´Å¥
+	JButton buttonConfirm = new JButton("confirm");  //È·ï¿½Ï°ï¿½Å¥
 
 	public class Translator {
-		String strDBName;   //Êý¾Ý¿âµÄÃû³Æ
-		String strQuery;    //´ýÖ´ÐÐµÄstrQueryÓï¾ä
-		String strRes;     //·µ»ØµÄÖ´ÐÐ½á¹û
+		String strDBName;   //ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		String strQuery;    //ï¿½ï¿½Ö´ï¿½Ðµï¿½strQueryï¿½ï¿½ï¿½
+		String strRes;     //ï¿½ï¿½ï¿½Øµï¿½Ö´ï¿½Ð½ï¿½ï¿½
 
-		String strSparqlDir;  //Sparql ÎÄ¼þµÄÂ·¾¶
+		String strSparqlDir;  //Sparql ï¿½Ä¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 		public void translate(FrontEnd frontEnd) {
 		}
 	}
-	public Translator translator = new Translator();   //FrongEnd ×Ô´øµÄ·­ÒëÆ÷
+	public Translator translator = new Translator();   //FrongEnd ï¿½Ô´ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	//ÅÅ°æ
+	//ï¿½Å°ï¿½
 	public void init(){
 		ctlFrame.setContentPane(panelContent);
 		panelContent.setLayout(new GridBagLayout());
-		ctlFrame.setResizable(false);
+		//ctlFrame.setResizable(false);
 
 		
 
-		//Êý¾Ý¿âÃû³ÆÄ£¿é
+		//ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½
 		GridBagConstraints constraints = new GridBagConstraints();
 
 		constraints.gridy = 0; constraints.gridx = 0;
@@ -70,7 +70,7 @@ public class FrontEnd{
 		constraints.gridx = 0;
 		panelContent.add(new JPanel(), constraints);
 		
-		//¼ÓÈëÎÄ¼þÑ¡ÔñÄ£¿é
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Ñ¡ï¿½ï¿½Ä£ï¿½ï¿½
 		GridBagConstraints constraints2 = new GridBagConstraints();
 
 		constraints2.gridy = constraints.gridy + 1; 
@@ -93,14 +93,16 @@ public class FrontEnd{
 		
 		constraints2.gridy = 6; constraints2.gridx = 0;
 		constraints2.gridheight = 6; constraints2.gridwidth = 4;
-		panelContent.add(textAreaQuery, constraints2);
+		JScrollPane scrollPane = new JScrollPane(textAreaQuery);
+		panelContent.add(scrollPane, constraints2);
+		//panelContent.add(textAreaQuery, constraints2);
 		
 		constraints2.gridy = constraints2.gridy + constraints2.gridheight; 
 		constraints2.gridx = 0;
 		constraints2.gridheight = 1; constraints2.gridwidth = 4;
 		panelContent.add(new JPanel(), constraints2);
 		
-		//¼ÓÈëconfirm°´Å¥
+		//ï¿½ï¿½ï¿½ï¿½confirmï¿½ï¿½Å¥
 		GridBagConstraints constraints3 = new GridBagConstraints();
 		constraints3.gridy = constraints2.gridy + constraints2.gridheight;
 		constraints3.gridx = 0;
@@ -109,28 +111,28 @@ public class FrontEnd{
 		constraints3.fill = constraints3.BOTH;
 		panelContent.add(buttonConfirm, constraints3); 
 
-		arrangeEvents();   //Ôö¼ÓÊÂ¼þ¹ÜÀí»úÖÆ
+		arrangeEvents();   //ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		ctlFrame.pack();
 		ctlFrame.setVisible(true);
 	}
 
 	private void arrangeEvents(){
-		//Ìí¼ÓÊÂ¼þ¹ÜÀí»úÖÆ
+		//ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-		//Ö÷´°¿Ú±»¹Ø±Õºó£¬ÍË³ö³ÌÐò
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ú±ï¿½ï¿½Ø±Õºï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½
 		ctlFrame.addWindowListener(new WindowAdapter() {
 			public void WindowClosed(WindowEvent e){
 				System.exit(0);
 			}
 		});
 		
-		//´ò¿ªsparqlÎÄ¼þ
+		//ï¿½ï¿½sparqlï¿½Ä¼ï¿½
 		buttonChooseFile.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//Ñ¡ÔñsparqlÎÄ¼þ
+				//Ñ¡ï¿½ï¿½sparqlï¿½Ä¼ï¿½
 				JFileChooser fileChooser = new JFileChooser();
 				FileNameExtensionFilter extFilter = new 
 						FileNameExtensionFilter("query files *.sql", "sql");
@@ -138,7 +140,7 @@ public class FrontEnd{
 
 				int iRetVal = fileChooser.showOpenDialog(ctlFrame);
 				if(iRetVal == fileChooser.APPROVE_OPTION) {
-					//Èç¹ûÑ¡È¡³É¹¦£¬Ôò½«ÎÄ¼þÃûÊä³öµ½text fieldÖÐ
+					//ï¿½ï¿½ï¿½Ñ¡È¡ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½text fieldï¿½ï¿½
 					File queryFile = fileChooser.getSelectedFile();
 					translator.strSparqlDir = queryFile.getAbsolutePath();
 					textFile.setText(queryFile.getName());
@@ -162,18 +164,18 @@ public class FrontEnd{
 					}
 				}
 				else {
-					//Èç¹ûÃ»ÓÐÑ¡Ôñ³É¹¦£¬ÄÇÃ´Çå¿ÕÎÄ±¾Óò
+					//ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ñ¡ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½
 					textFile.setText("");
 					labelWarning.setText("No valid file is chosen!");
 					textAreaQuery.setText("");
 				}
 
-				//°ÑÎÄ¼þÄÚÈÝÊä³öÖÁÏÂÃæµÄtext area
+				//ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½text area
 			}
 		});
 		
 		buttonConfirm.addActionListener(new ActionListener() {
-			//ÎªÈ·ÈÏ°´Å¥¼ÓÈëÊÂ¼þ´¦Àí»úÖÆ
+			//ÎªÈ·ï¿½Ï°ï¿½Å¥ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
