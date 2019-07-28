@@ -169,7 +169,7 @@ public class FrontEnd{
 				// TODO Auto-generated method stub
 				//ѡ��sparql�ļ�
 				JFileChooser fileChooser = new JFileChooser();
-FileNameExtensionFilter extFilter = new 
+				FileNameExtensionFilter extFilter = new 
 						FileNameExtensionFilter("query files *.sql", "sql");
 				fileChooser.setFileFilter(extFilter);
 
@@ -252,9 +252,9 @@ FileNameExtensionFilter extFilter = new
 					File fileSave = fileChooser.getSelectedFile();
 					
 					if(!fileSave.isFile()){
-						String strName = fileChooser.getName();
+						String strName = fileSave.getName();
 						String strDir = fileChooser.getCurrentDirectory().getAbsolutePath();
-						strName = translator.strDBName + "." + translator.strOutputFormat;
+						strName = strName.substring(0, strName.indexOf(".")) + "." + translator.strOutputFormat;
 						fileSave = new File(strDir, strName);
 					}
 
